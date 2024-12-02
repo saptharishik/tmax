@@ -11,8 +11,6 @@ import {
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  ScrollView
 } from 'react-native';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -29,8 +27,6 @@ import Callout from './assets/pages/Callout';
 import BottomSheet from '@gorhom/bottom-sheet';
 import TruckDetails from './assets/pages/TruckDetails';
 import Calculator from './assets/pages/Calculator';
-import Shelf_life from './assets/pages/Shelf_life';
-import Tyre_wear from './assets/pages/Tyre_wear';
 
 export default function App() {
   const [user, setUser] = useState(true); // false by default
@@ -64,52 +60,45 @@ function Login({ setUser }) {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      
-    >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
-            <Image
-              style={styles.tinyLogo}
-              source={require('./assets/images/Loginpage.png')}
-            />
-            <View style={styles.loginBox}>
-              <View style={styles.header}>
-                <Text style={styles.headerText}>Log in</Text>
-              </View>
-              <View>
-                <TextInput
-                  value={email}
-                  style={styles.input}
-                  placeholder="Email"
-                  autoCapitalize="none"
-                  keyboardType="email-address"
-                  onChangeText={(text) => setEmail(text)}
-                />
-                <TextInput
-                  secureTextEntry
-                  value={password}
-                  style={styles.input}
-                  placeholder="Password"
-                  autoCapitalize="none"
-                  onChangeText={(text) => setPassword(text)}
-                />
-              </View>
-              <View style={styles.buttonContainer}>
-                {loading ? (
-                  <ActivityIndicator size="large" color="#0000ff" />
-                ) : (
-                  <Button title="Login" color="#2d51a5" onPress={authenticate} />
-                )}
-              </View>
-            </View>
-            <StatusBar style="auto" />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Image
+          style={styles.tinyLogo}
+          source={require('./assets/images/Loginpage.png')}
+        />
+        <View style={styles.loginBox}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Log in</Text>
           </View>
-        </TouchableWithoutFeedback>
-      </ScrollView>
-    </KeyboardAvoidingView>
+
+          <View>
+            <TextInput
+              value={email}
+              style={styles.input}
+              placeholder="Email"
+              autoCapitalize="none"
+              onChangeText={(text) => setEmail(text)}
+            />
+            <TextInput
+              secureTextEntry
+              value={password}
+              style={styles.input}
+              placeholder="Password"
+              autoCapitalize="none"
+              onChangeText={(text) => setPassword(text)}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            {loading ? (
+              <ActivityIndicator size="large" color="#0000ff" />
+            ) : (
+              <Button title="Login" color="#2d51a5" onPress={authenticate} />
+            )}
+          </View>
+        </View>
+        <StatusBar style="auto" />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -130,9 +119,6 @@ function Home({ setUser }) {
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="TKPH calculator" component={CalculatorScreen} />
         <Drawer.Screen name="Truck" component={TruckDetails} />
-        <Drawer.Screen name='Shelf Life' component={ShelfLifeScreen}/>
-        <Drawer.Screen name='Tyre Wear' component={TyreWearScreen}/>
-
         <Drawer.Screen
           name="Logout"
           component={LogoutScreen}
@@ -241,13 +227,6 @@ function HomeScreen({ navigation }) {
 function CalculatorScreen() {
   return <Calculator />;
 }
-function ShelfLifeScreen(){
-  return <Shelf_life/>
-}
-
-function TyreWearScreen(){
-  return <Tyre_wear/>
-} 
 
 const styles = StyleSheet.create({
   container: {

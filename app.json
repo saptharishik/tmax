@@ -12,17 +12,39 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "n"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.NFC"
+      ],
+      "package": "com.saptha_rishi_k.tmax"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+  "react-native-nfc-manager",
+  "expo-build-properties",
+  [
+    "expo-dev-launcher",
+    {
+      "launchMode": "most-recent"
+    }
+  ]
+],
+
+    "extra": {
+      "eas": {
+        "projectId": "ff655951-1bcd-4dbe-b5bc-38c13c653468"
+      }
     }
   }
 }
